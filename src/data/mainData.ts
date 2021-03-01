@@ -1,0 +1,1 @@
+export const genres=['Comedy','Drama','Music','Romance','Fantasy','Adventure'];

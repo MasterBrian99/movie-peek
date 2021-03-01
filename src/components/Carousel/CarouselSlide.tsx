@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Carousel, } from 'react-bootstrap';
 import axios from 'axios';
 import styled from 'styled-components';
-import img1 from '../../img/yXFqtlQ.jpeg'
+// import img1 from '../../img/yXFqtlQ.jpeg'
 interface Movies {
   id: number;
   title: string;
@@ -22,60 +22,59 @@ const CarouselSlide = () => {
   const handleSelect = (selectedIndex: number, e: any) => {
     setIndex(selectedIndex);
   };
-  /*
-    useEffect(() => {
-      (async function () {
-        try {
-          const response = await axios.get(
-            `https://yts.mx/api/v2/movie_suggestions.json?movie_id=${Math.floor(Math.random() * 10)}`);
-          const json = await response.data;
-  
-          const data: Movies[] = json.data.movies;
-  
-          setMovie(data);
-          // console.log(data);
-  
-        } catch (e) {
-          console.error(e);
-        }
-      })();
-  
-    }, [])
-  */
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await axios.get(
+          `https://yts.mx/api/v2/movie_suggestions.json?movie_id=${Math.floor(Math.random() * 10)}`);
+        const json = await response.data;
+
+        const data: Movies[] = json.data.movies;
+
+        setMovie(data);
+        // console.log(data);
+
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+
+  }, [])
   return (
     <>
       <Carousel activeIndex={index} onSelect={handleSelect} keyboard slide touch wrap pause={false}>
+        {movie.map((m) =>
+          <Carousel.Item key={m.id}>
+            <Img
+              src={m.background_image_original}
+              alt={m.title_english}
+            />
+            <Carousel.Caption>
+              <CaptionDiv >
+                <h4>suggestions</h4>
+                <h2>{m.title}</h2>
+                <CaptioninfoDiv className='mr-auto flex-wrap'>
+                  <p className='mr-3'>{m.year}</p>
 
+                  {m.genres.map((g, i) =>
+                    <p className='mr-1' key={i}>{g}</p>
 
-        <Carousel.Item>
-          <img
+                  )}
 
-            src={img1}
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <CaptionDiv >
-              <h4>New releases</h4>
-              <h2>Lorem ipsu mipsumi psumips.</h2>
-              <CaptioninfoDiv className='mr-auto'>
-                <p className='mr-3'>2020</p>
-                <p className='mr-1'>Genre</p>
-                <p className='mr-1'>Genre</p>
-                <p className='mr-1'>Genre</p>
-                <p className='mr-1'>Genre</p>
-                <p className='ml-3'>96 min</p>
-              </CaptioninfoDiv>
-              <CaptionInfoMain >
-                <p>ody, a 9-year-old boy from Mugwomp Flats responds to a distress call about a trapped giant
-                Golden Eagle called Marahute. Freeing her, he gains a close friendship with the bird. However,
-                   Cody is soon abducted by the murderous poacher</p>
-                <a href="#" className='btn btn-danger btn-lg'>Watch Trailer</a>
-              </CaptionInfoMain>
-            </CaptionDiv>
+                  <p className='ml-3'>{m.runtime} min</p>
+                </CaptioninfoDiv>
+                <CaptionInfoMain >
+                  <p>{m.summary.slice(0, 200)}<Readmore> Read more...</Readmore> </p>
+                  <a href={`https://www.youtube.com/watch?v=${m.yt_trailer_code}`} target="_blank" rel="noreferrer" className='btn btn-danger btn-lg'>Watch Trailer</a>
+                </CaptionInfoMain>
+              </CaptionDiv>
 
-          </Carousel.Caption>
+            </Carousel.Caption>
 
-        </Carousel.Item>
+          </Carousel.Item>
+
+        )}
+
 
 
       </Carousel>
@@ -84,16 +83,7 @@ const CarouselSlide = () => {
 }
 export default CarouselSlide
 
-// export const getStaticProps: GetStaticProps = async () => {
-//     const res = await axios.get(`https://yts.mx/api/v2/movie_suggestions.json?movie_id=${Math.floor(Math.random() * 10)}`);
-//     const data = await res.data;
-//     const movies = await data.data.movies;
-//     return {
-//         props: {
-//             movies
-//         }
-//     }
-// }
+
 
 const CaptionDiv = styled.div`
 display: flex;
@@ -189,4 +179,13 @@ const CaptionInfoMain = styled.div`
 
 const Readmore = styled.span`
 color:#E90101;
+`
+
+const Img = styled.img`
+
+height: 100vh;
+  width: 100%;
+  opacity: 0.4;
+  object-fit: cover;
+
 `
