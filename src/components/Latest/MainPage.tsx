@@ -21,25 +21,26 @@ interface Movies {
     date_uploaded: string;
 }
 
-
 const MainPage = () => {
     const [movie, setMovie] = useState<Movies[]>([]!);
     const [items, setItems] = useState(8);
 
     useEffect(() => {
+
         (async function () {
             try {
-
                 const s = await getData(items);
                 // console.log(s.movies);
                 setMovie(s.movies);
                 // console.log(movie);
 
             } catch (e) {
-                console.error(e);
+                throw e;
             }
         })();
-
+        return () => {
+            setMovie([]);
+        }
     }, [items])
 
     return (
@@ -91,7 +92,7 @@ export default MainPage
 const Main = styled.div`
 color:#fff;
 min-height:100vh;
-background-color:#000000;
+background-color:#131722;
 max-height:100%;
 
 

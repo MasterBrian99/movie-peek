@@ -1,26 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
-import BrowseMain from './components/Browse/BrowseMain';
-import CarouselSlide from './components/Carousel/CarouselSlide';
-import Footer from './components/Footer/Footer';
-import MainPage from './components/Suggestions/MainPage';
+import { BrowserRouter, Route, Router, Switch } from 'react-router-dom';
+import Home from './containers/Home';
+import Latest from './containers/Latest';
+
 
 function App() {
   return (
-    <Container>
-      <CarouselSlide />
-      <MainPage />
-      <BrowseMain />
-      <Footer />
-    </Container>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/latest' exact component={Latest} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
 export default App;
 
 
-const Container = styled.div`
-  background-color: rgb(0, 0, 0);
-
-
-`

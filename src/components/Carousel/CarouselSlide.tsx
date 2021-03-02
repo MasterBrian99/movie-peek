@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Carousel, } from 'react-bootstrap';
 import axios from 'axios';
 import styled from 'styled-components';
-// import img1 from '../../img/yXFqtlQ.jpeg'
+import img1 from '../../img/yXFqtlQ.jpeg'
 interface Movies {
   id: number;
   title: string;
@@ -38,7 +38,9 @@ const CarouselSlide = () => {
         console.error(e);
       }
     })();
-
+    return () => {
+      setMovie([]);
+    }
   }, [])
   return (
     <>
@@ -46,7 +48,8 @@ const CarouselSlide = () => {
         {movie.map((m) =>
           <Carousel.Item key={m.id}>
             <Img
-              src={m.background_image_original}
+              src={img1}
+              // {m.background_image_original}
               alt={m.title_english}
             />
             <Carousel.Caption>

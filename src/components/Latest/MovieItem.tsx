@@ -1,5 +1,5 @@
 import "./Item.scss"
-// import img3 from "../../img/YOVzKwa.jpeg";
+import img3 from "../../img/YOVzKwa.jpeg";
 import LazyLoad from 'react-lazyload';
 
 interface Movies {
@@ -24,8 +24,8 @@ const MovieItem = ({ id, url, imdb_code, title, year, runtime, genres, summary, 
             <div className="blog-item__inner">
                 <div className="blog-item__image-container">
                     <LazyLoad>
-                        <img src={background_image_original} alt={imdb_code} />
-
+                        <img src={img3} alt={imdb_code} />
+                        {/* src={background_image_original} */}
                     </LazyLoad>
                 </div>
                 <div className="blog-item__content">

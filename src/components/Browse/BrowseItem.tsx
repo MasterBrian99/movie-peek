@@ -8,10 +8,6 @@ interface Prop {
 
 
 const BrowseItem = ({ genre }: Prop) => {
-
-
-
-
     return (
         <>
             <Browse className='d-flex flex-column justify-content-between' >
