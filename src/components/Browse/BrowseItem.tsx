@@ -1,19 +1,38 @@
-
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import img1 from '../../img/Zlw9mQm.png'
+import randomColor from 'randomcolor';
+import { useHistory } from 'react-router-dom';
+import { genres } from '../../data/mainData';
+randomColor({
+    luminosity: 'bright',
+});
 
-interface Prop {
-    genre: string
-}
+const BrowseItem = () => {
 
+    const [random, setRandom] = useState('#fff');
+    let history = useHistory();
+    useEffect(() => {
+        (function () {
+            try {
+                const s = randomColor();
+                setRandom(s);
+            } catch (e) {
+                throw e;
+            }
+        })();
+        return () => {
+            setRandom('');
+        }
+    }, []);
 
-const BrowseItem = ({ genre }: Prop) => {
     return (
         <>
-            <Browse className='d-flex flex-column justify-content-between' >
-                <img src={img1} alt="" />
-                <h2>{genre}</h2>
-
+            <Browse className='d-flex  flex-wrap' >
+                {genres.map((g, index) =>
+                    <Button key={index} className='btn btn-sm' style={{ backgroundColor: random }} onClick={() => {
+                        history.push(`/browse/${g}`)
+                    }}>{g}</Button>
+                )}
             </Browse>
         </>
     )
@@ -24,33 +43,23 @@ export default BrowseItem
 
 
 const Browse = styled.div`
-    height:20rem;
-    width:14rem;
+   
+    padding:1rem;
+    border-radius:10px;
+
+`
+
+const Button = styled.button`
+color:#000000;
+padding:0.3rem .8rem;
+font-size:1rem;
+margin:.5rem;
+
+
+    :hover{
+    color:#ffffff; 
     background-color:#000000;
-    margin:1rem;
-    border-radius:10px;
-
-    img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-    border-radius:10px;
-        opacity:.5;
-    border-radius:10px;
+    border:0.4px solid #ffffff;
 
     }
-
-    h2{
-font-family: 'Noto Sans', sans-serif;
-        font-weight:700;
-        color:white;
-        font-size:1.2rem;
-        background-color:#333333;
-        text-align: center;
-        padding:1rem;
-        margin:0;
-    border-radius:0 0  10px 10px;
-
-    }
-
 `

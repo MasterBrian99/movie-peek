@@ -2,19 +2,19 @@
 import styled from 'styled-components';
 import MainTitle from '../Title/MainTitle';
 import BrowseItem from './BrowseItem';
-import { genres } from '../../data/mainData';
+
 const BrowseMain = () => {
     return (
         <Main>
             <div className='d-flex justify-content-center'>
-                <MainTitle name="Browse" />
+                <MainTitle name="Browse" color="#000" />
             </div>
             <div className='d-flex justify-content-center'>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                <p>Browse your favorite movies....</p>
             </div>
             <div className="d-flex flex-wrap justify-content-center">
-                {genres.map((g, index) => <BrowseItem key={index} genre={g} />)}
-
+                {/* {genres.map((g, index) => <BrowseItem key={index} genre={g} onClick={() => { }} />)} */}
+                <BrowseItem />
             </div>
             <div>
 

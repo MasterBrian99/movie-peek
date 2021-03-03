@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { Carousel, } from 'react-bootstrap';
 import axios from 'axios';
 import styled from 'styled-components';
-import img1 from '../../img/yXFqtlQ.jpeg'
+import { useHistory } from 'react-router-dom';
+import cogoToast from 'cogo-toast';
 interface Movies {
   id: number;
   title: string;
@@ -42,14 +43,14 @@ const CarouselSlide = () => {
       setMovie([]);
     }
   }, [])
+  let history = useHistory();
   return (
     <>
       <Carousel activeIndex={index} onSelect={handleSelect} keyboard slide touch wrap pause={false}>
         {movie.map((m) =>
           <Carousel.Item key={m.id}>
             <Img
-              src={img1}
-              // {m.background_image_original}
+              src={m.background_image_original}
               alt={m.title_english}
             />
             <Carousel.Caption>
@@ -67,8 +68,12 @@ const CarouselSlide = () => {
                   <p className='ml-3'>{m.runtime} min</p>
                 </CaptioninfoDiv>
                 <CaptionInfoMain >
-                  <p>{m.summary.slice(0, 200)}<Readmore> Read more...</Readmore> </p>
-                  <a href={`https://www.youtube.com/watch?v=${m.yt_trailer_code}`} target="_blank" rel="noreferrer" className='btn btn-danger btn-lg'>Watch Trailer</a>
+                  <p>{m.summary.slice(0, 200)}<Readmore onClick={async () => {
+                    const res = await axios.get(`https://yts.mx/api/v2/movie_details.json?movie_id=${m.id}`);
+                    res.data.data.movie.id !== 0 ? history.push(`/movie/id/${m.id}`) : cogoToast.warn("Something wrong !");
+
+                  }}> Read more...</Readmore> </p>
+                  <a href={m.yt_trailer_code.length !== 0 ? `https://www.youtube.com/watch?v=${m.yt_trailer_code}` : `https://www.youtube.com/watch?v=${'dQw4w9WgXcQ'}`} target="_blank" rel="noreferrer" className='btn btn-danger btn-lg'>Watch Trailer</a>
                 </CaptionInfoMain>
               </CaptionDiv>
 
@@ -77,9 +82,6 @@ const CarouselSlide = () => {
           </Carousel.Item>
 
         )}
-
-
-
       </Carousel>
     </>
   )
@@ -182,6 +184,10 @@ const CaptionInfoMain = styled.div`
 
 const Readmore = styled.span`
 color:#E90101;
+
+:hover{
+  cursor: pointer;
+}
 `
 
 const Img = styled.img`

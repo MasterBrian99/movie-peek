@@ -48,7 +48,7 @@ const MainPage = () => {
         <Main>
             <ContainerDiv fluid>
                 <div className='d-flex justify-content-center'>
-                    <MainTitle name="Latest Movies" />
+                    <MainTitle name="Latest Movies" color="#fff" />
                 </div>
 
                 <div className='d-flex justify-content-center flex-wrap'>

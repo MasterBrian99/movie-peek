@@ -5,7 +5,8 @@ import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { getData } from '../data/apiData';
 import Footer from '../components/Footer/Footer';
-
+import MainTitle from '../components/Title/MainTitle';
+import { useLocation } from 'react-router-dom';
 
 
 interface Movies {
@@ -20,13 +21,10 @@ interface Movies {
     yt_trailer_code: string;
     background_image_original: string;
     large_cover_image: string;
-    state: string;
     date_uploaded: string;
 }
-
-
-
 const Latest = () => {
+    const { pathname } = useLocation();
 
     const [movie, setMovie] = useState<Movies[]>([]!);
     const [items, setItems] = useState(8);
@@ -49,11 +47,19 @@ const Latest = () => {
         }
     }, [items]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     return (
         <ContainerMain>
             <NavbarMain />
+            <TextDiv className="d-flex justify-content-center">
+                <MainTitle name="Latest Movies" color="#fff" />
+
+            </TextDiv>
             <ContainerItem fluid className='d-flex flex-wrap justify-content-center'>
+
                 {movie.map((m) =>
                     <MovieItem
                         key={m.id}
@@ -94,7 +100,7 @@ const ContainerMain = styled.div`
 `
 
 const ContainerItem = styled(Container)`
-padding:10rem 6rem 4rem;
+padding:1rem 6rem 2rem;
 @media (max-width:1334px){
 padding:1rem 0;
 }
@@ -108,4 +114,8 @@ const Btn = styled.button`
 
     }
 
+`
+
+const TextDiv = styled.div`
+padding-top:8rem;
 `

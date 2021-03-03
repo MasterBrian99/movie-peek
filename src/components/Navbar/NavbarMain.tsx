@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import logo from '../../img/logo.png';
-import { Link, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavbarMain = () => {
     const [navSize, setnavSize] = useState('10rem')
@@ -27,14 +27,17 @@ const NavbarMain = () => {
             <NavbarContainer expand="lg" fixed="top" style={{ height: navSize }} color={{ clr: navColor }}>
 
                 <Container  >
-                    <Navbar.Brand href="#home">
-                        <img
-                            src={logo}
-                            width="130"
-                            className="d-inline-block align-top"
-                            alt="React Bootstrap logo"
-                        />
-                    </Navbar.Brand>
+                    <NavLink to='/'>
+                        <Navbar.Brand >
+                            <img
+                                src={logo}
+                                width="130"
+                                className="d-inline-block align-top"
+                                alt="React Bootstrap logo"
+                            />
+                        </Navbar.Brand>
+                    </NavLink>
+
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className='m-auto'>
@@ -44,15 +47,18 @@ const NavbarMain = () => {
                             <NavLink to='/latest'>
                                 Latest Movies
                             </NavLink>
-
+                            <NavLink to='/browse/action'>
+                                Browse
+                            </NavLink>
+                            <NavLink to='/search'>
+                                Search
+                            </NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
 
             </NavbarContainer>
             { /* Route components are rendered if the path prop matches the current URL */}
-
-
         </>
     )
 }
@@ -61,7 +67,7 @@ export default NavbarMain
 
 const NavbarContainer = styled(Navbar)`
 background-color:${props => props.color.clr ? 'transparent' : 'black'};
-border-bottom:${props => props.color.clr ? 'none' : '1px solid #fff'} ;
+border-bottom:${props => props.color.clr ? 'none' : '.4px inset rgba(255,255,255,0.56)'} ;
 transition: all 500ms;
 `
 

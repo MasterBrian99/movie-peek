@@ -14,7 +14,6 @@ export default Footer;
 
 
 const FooterMain = styled.div`
-margin-top:1rem;
     padding: .5rem;
     background-color: rgb(0, 0, 0);
     color:#fff;

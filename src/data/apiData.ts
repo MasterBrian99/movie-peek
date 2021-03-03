@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import {API_KEY} from './mainData';
 export const getData=async(length:number)=>{
     const res=await axios.get(`https://yts.mx/api/v2/list_movies.json?&limit=${length}`);
         const data=res.data.data;
@@ -9,12 +9,28 @@ export const getData=async(length:number)=>{
 
 }
 
-// interface ImgProps {
-//     url: string
-// }
-// export const getImg=async () =>{
-//     const res=await axios.get('https://loremflickr.com/g/320/240/paris,girl/all');
 
-//     console.log(res);
-//     return res+'';
-// }
+
+
+
+export const getDataByGenre= async(length:number,genre:string)=>{
+    const res=await axios.get(`https://yts.mx/api/v2/list_movies.json?genre=${genre}&sort_by=year&limit=${length}`);
+    const data=res.data.data;
+    // console.log(data);
+    return data;
+}   
+
+
+export const getSingleMovieData=async (id:string) => {
+    const res=await axios.get(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`);
+    const data=res.data.data.movie;
+//   console.log(data);
+  return data;
+
+}
+
+
+export const getOMDbData =async(name:string)=>{
+    const res = await axios.get(`http://www.omdbapi.com/?t=${name}&apikey=${API_KEY}`);
+    return res.data;
+}
