@@ -15,7 +15,7 @@ const SearchBar = () => {
                     aria-describedby="search-addon" value={searchValue} onChange={e => setsearchValue(e.target.value)} />
                 <Btn type="button" className="btn" onClick={async () => {
 
-                    const res = await axios.get(`http://www.omdbapi.com/?t=${searchValue}&apikey=${API_KEY}`);
+                    const res = await axios.get(`https://www.omdbapi.com/?t=${searchValue}&apikey=${API_KEY}`);
                     res.data.Response !== 'False' && res.data.Response !== undefined ? history.push(`/movie/name/${searchValue}`) : cogoToast.error('Movie Not Found');
                     // console.log(res.data.Response);
                     // res.data.data.movie.id   !== 0 ? history.push(`/movie/id/${id}`) : cogoToast.warn("Something wrong !");

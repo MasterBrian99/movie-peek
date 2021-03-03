@@ -24,7 +24,6 @@ const BrowseMainItem = ({ id, title_english, year, runtime, summary, date_upload
     return (
         <Container className="text-white" onClick={async () => {
             const res = await axios.get(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`);
-            console.log(res.data.data.movie.id);
             res.data.data.movie.id !== 0 ? history.push(`/movie/id/${id}`) : cogoToast.warn("Something wrong !");
 
         }}>

@@ -31,6 +31,6 @@ export const getSingleMovieData=async (id:string) => {
 
 
 export const getOMDbData =async(name:string)=>{
-    const res = await axios.get(`http://www.omdbapi.com/?t=${name}&apikey=${API_KEY}`);
+    const res = await axios.get(`https://www.omdbapi.com/?t=${name}&apikey=${API_KEY}`);
     return res.data;
 }
