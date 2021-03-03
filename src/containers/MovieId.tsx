@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { RouteComponentProps, useParams } from "react-router-dom";
+import { RouteComponentProps, useParams, useLocation } from "react-router-dom";
 import styled from 'styled-components';
 import NavbarMain from "../components/Navbar/NavbarMain";
 import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
@@ -29,7 +29,7 @@ interface ParamTypes {
 }
 
 const MovieId = ({ match }: Prop) => {
-
+    const { pathname } = useLocation();
     let { name } = useParams<ParamTypes>();
 
     const [movie, setMovie] = useState<Prop>();
@@ -48,6 +48,10 @@ const MovieId = ({ match }: Prop) => {
             setMovie(undefined);
         }
     }, [name, match.params.id])
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
 
     return (
         <>

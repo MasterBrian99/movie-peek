@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import randomColor from 'randomcolor';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { genres } from '../../data/mainData';
 randomColor({
     luminosity: 'bright',
 });
 
 const BrowseItem = () => {
+    const { pathname } = useLocation();
 
     const [random, setRandom] = useState('#fff');
     let history = useHistory();
@@ -24,6 +25,9 @@ const BrowseItem = () => {
             setRandom('');
         }
     }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { RouteComponentProps, useParams } from "react-router-dom"
+import { RouteComponentProps, useParams, useLocation } from "react-router-dom"
 import { useState, useEffect } from 'react';
 import { getOMDbData } from '../data/apiData';
 import styled from 'styled-components';
@@ -23,7 +23,7 @@ interface ParamTypes {
     name: string
 }
 const MovieName = ({ match }: Prop) => {
-
+    const { pathname } = useLocation();
     let { name } = useParams<ParamTypes>();
 
     const [movie, setMovie] = useState<Prop>();
@@ -42,7 +42,9 @@ const MovieName = ({ match }: Prop) => {
             setMovie(undefined);
         }
     }, [match.params.name, name])
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
     return (
         <>
 
