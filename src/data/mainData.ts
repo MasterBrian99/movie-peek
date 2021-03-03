@@ -2,4 +2,4 @@ export const genres=['All','Action','Adventure','Animation','Biography','Comedy'
     ,'History','Horror','Music','Musical','Mystery','News','Reality-TV','Romance','Sci-Fi','Sport','Talk-Show','Thriller','War','Western'];
 
 
-export const API_KEY="";
+export const API_KEY="";    
