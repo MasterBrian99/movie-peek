@@ -18,7 +18,7 @@ function App() {
         <Route path='/movie/id/:id' exact component={MovieId} />
         <Route path='/movie/name/:name' exact component={MovieName} />
         <Route path='/search' exact component={Search} />
-        <Route path='/' render={Error404} />
+        <Route exact component={Error404} />
 
       </Switch>
     </BrowserRouter>
