@@ -43,10 +43,13 @@
 ## Screenshot
 
 <img src="/images/1.png" alt="home page" width="600">
-<img src="/images/2.png" alt="home page" width="600">
-<img src="/images/3.png" alt="home page" width="600">
-<img src="/images/4.png" alt="home page" width="600">
-<img src="/images/5.png" alt="home page" width="600">
+<img src="/images/2.png" alt="latest movies" width="600">
+<img src="/images/3.png" alt="browse movies" width="600">
+<img src="/images/4.png" alt="search" width="600">
+<img src="/images/5.png" alt="404" width="600">
+<img src="/images/6.png" alt="movies found" width="600">
+<img src="/images/7.png" alt="movies found" width="600">
+<img src="/images/8.png" alt="movies found" width="600">
 
 ---
 
@@ -73,4 +76,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
