@@ -2,7 +2,7 @@
 
 ## [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/MasterBrian99/) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/MasterBrian99/movie-peek/blob/main/LICENSE)
 
-#### [Live Version](https://movie-lib.netlify.app/)
+#### [Live Version Netlify](https://movie-lib.netlify.app/)
 
 ---
 
